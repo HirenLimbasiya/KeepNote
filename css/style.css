@@ -93,6 +93,8 @@ img{
 }
 .notes{
   padding: 0 60px;
+  display: grid;
+  grid-template-columns: repeat(4 , 1fr);
 }
 .catd-title{
   font-size: 1.3rem;
@@ -126,7 +128,7 @@ img{
 }
 .noteCard{
   padding: 10px 10px;
-  min-width: 250px;
+  /* min-width: 250px; */
   display: inline-block;
   vertical-align:top;
 }
@@ -173,15 +175,6 @@ img{
   color: white;
   background-color: #70CC14;
 }
-.important{
-  width: 15px;
-  height: 15px;
-  border-radius: 100%;
-  background-color: red;
-  position: absolute;
-  right: 10px;
-  border: 0.7px solid #3F3D56;
-}
 .important:active{
   background-color: #A80A0A;
 }
@@ -189,4 +182,68 @@ hr{
   margin: 0 0 3px 0;
   border-left: 0;
   border-right: 0;
+}
+@media only screen and (max-width: 920px){
+  .card{
+    padding: 0;
+  }
+  .card-title{
+    font-size: 1.6rem;
+  }
+  .textarea {
+    width: 50%;
+  }
+  .form-control{
+    height: 150px;
+  }
+  .notes{
+    grid-template-columns: repeat(3 , 1fr);
+  }
+}
+@media only screen and (max-width: 420px) {
+
+
+    .form-control{
+      height: 90px;
+    }
+    .main-heading{
+      padding: 8px 0;
+    }
+    .card{
+      padding: 0;
+    }
+    .add-btn{
+      padding: 5px 12px;
+      top: -5px;
+    }
+    .card-title{
+      font-size: 1rem;
+    }
+    .empty{
+      font-size: 1.5rem;
+    }
+    .notes-section{
+      font-size: 1.5rem;
+      padding: 0 35px;
+    }
+    .notes{
+      grid-template-columns: repeat(2 , 1fr);
+    }
+    .search{
+      padding: 10px 35px;
+    }
+    .notes{
+      padding: 0 35px;
+    }
+    .catd-title{
+      font-size: 1.1rem;
+    }
+    .card-text{
+      font-size: 0.8rem;
+    }
+    .edit ,.delete{
+      font-size: 0.8rem;
+      padding: 3px 4.5px;
+    }
+
 }
