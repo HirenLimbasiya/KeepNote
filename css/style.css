@@ -78,8 +78,7 @@ img{
   padding: 0 60px;
   font-size: 2rem;
   color: black;
-    margin: 0;
-
+  margin: 0;
   background-image: linear-gradient(to right ,#FEF5AC, #3F72AF);
 }
 .search{
@@ -93,8 +92,6 @@ img{
 }
 .notes{
   padding: 0 60px;
-  display: grid;
-  grid-template-columns: repeat(4 , 1fr);
 }
 .catd-title{
   font-size: 1.3rem;
@@ -106,6 +103,7 @@ img{
   font-size: 1rem;
   margin-bottom: 0.5rem;
   width: 100%;
+  white-space: pre-wrap;
   word-wrap: break-word;
   color: black;
   font-family: 'Poppins', sans-serif;
@@ -128,7 +126,8 @@ img{
 }
 .noteCard{
   padding: 10px 10px;
-  /* min-width: 250px; */
+  max-width: 250px;
+  min-width: 250px;
   display: inline-block;
   vertical-align:top;
 }
@@ -183,6 +182,56 @@ hr{
   border-left: 0;
   border-right: 0;
 }
+.mycheckbox{
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translateY(-50%);
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.mycheckbox input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  transform: translateY(-50%);
+  background-color: #11D9FF;
+  border-radius: 25%;
+}
+.mycheckbox:hover input ~ .checkmark {
+  background-color: #00D7D3;
+}
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+.mycheckbox input:checked ~ .checkmark:after {
+  display: block;
+}
+.mycheckbox .checkmark:after {
+  left: 5px;
+  top: 2.5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
 @media only screen and (max-width: 920px){
   .card{
     padding: 0;
@@ -196,8 +245,8 @@ hr{
   .form-control{
     height: 150px;
   }
-  .notes{
-    grid-template-columns: repeat(3 , 1fr);
+  .noteCard{
+    min-width: 220px;
   }
 }
 @media only screen and (max-width: 420px) {
@@ -226,8 +275,8 @@ hr{
       font-size: 1.5rem;
       padding: 0 35px;
     }
-    .notes{
-      grid-template-columns: repeat(2 , 1fr);
+    .noteCard{
+      min-width: 120px;
     }
     .search{
       padding: 10px 35px;

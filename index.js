@@ -14,7 +14,11 @@ function addNote(){
     notesObj = JSON.parse(notes);
   }
    if(addTxt.value.trim().length != 0){
-    notesObj.push(addTxt.value);
+     let data = {}
+     data.id = new Date().valueOf();
+     data.value = addTxt.value;
+     data.isImportant = false
+    notesObj.push(data);
     localStorage.setItem("notes" , JSON.stringify(notesObj));
     showNotes();
   }
@@ -33,15 +37,37 @@ function showNotes(){
 
   let myNotes = "";
   notesObj.forEach(function(element , index){
-    console.log(element);
+    console.log(element.isImportant)
+    if(!element.isImportant){
     myNotes += `<div class="noteCard">
       <div id="${index}" class="card-deck card-deck1">
         <h5 class="catd-title"><strong>Note ${index + 1}</strong></h5><hr>
-        <pre class="card-text">${element}</pre>
+        <pre class="card-text">${element.value}</pre>
         <i id="${index}" onclick="deleteNote(this.id)" class="delete fa-solid fa-trash"></i>
         <i id="${index}" onclick="editNote(this.id)" class="edit fa-regular fa-pen-to-square"></i>
+        <label class="mycheckbox">
+          <input title="Important" id="${element.id}" type="checkbox" onchange="important(this.id)">
+          <span class="checkmark"></span>
+        </label>
       </div>
-    </div>`;
+
+    </div>`
+  }else{
+    myNotes += `<div class="noteCard">
+      <div id="${index}" class="card-deck card-deck1" style="background-color: #EEE8A9">
+        <h5 class="catd-title"><strong>Note ${index + 1}</strong></h5><hr>
+        <pre class="card-text">${element.value}</pre>
+        <i id="${index}" onclick="deleteNote(this.id)" class="delete fa-solid fa-trash"></i>
+        <i id="${index}" onclick="editNote(this.id)" class="edit fa-regular fa-pen-to-square"></i>
+        <label class="mycheckbox">
+          <input title="Important" id="${element.id}" type="checkbox" onchange="important(this.id)"  checked>
+          <span class="checkmark"></span>
+        </label>
+
+      </div>
+
+    </div>`
+  }
   });
 
   let notesElm = document.getElementById("notes");
@@ -78,7 +104,7 @@ function editNote(index){
     let notes = localStorage.getItem("notes");
     notesObj = JSON.parse(notes);
     if(editText.innerText.trim().length != 0){
-    notesObj[index] = editText.innerText;
+    notesObj[index].value = editText.innerText;
     localStorage.setItem("notes" , JSON.stringify(notesObj));
     document.getElementsByClassName('delete')[index].style.display = "block";
     document.getElementsByClassName('edit')[index].style.right = "0";
@@ -101,7 +127,7 @@ function editNote(index){
 
 
 function search_cards() {
-  console.log("hello");
+
     let input = document.getElementById('search').value
     input=input.toLowerCase();
     let x = document.getElementsByClassName('noteCard');
@@ -116,6 +142,41 @@ function search_cards() {
             x[i].style.display="inline-block";
         }
     }
+}
+
+
+function important(id){
+  if(document.getElementById(id).checked){
+    let notes = localStorage.getItem("notes");
+    notesObj = JSON.parse(notes);
+    // let ind;
+    let x = document.getElementsByClassName('noteCard');
+    for(let i=0 ;i<x.length ;i++){
+
+      if(notesObj[i].id == id){
+        document.getElementsByClassName('card-deck')[i].style.backgroundColor = "#EEE8A9";
+        notesObj[i].isImportant = true;
+        localStorage.setItem("notes" , JSON.stringify(notesObj));
+        return;
+      }
+    }
+    // console.log(ind)
+    // notesObj[ind].isImportant = true;
+  }else{
+    let notes = localStorage.getItem("notes");
+    notesObj = JSON.parse(notes);
+    // let ind;
+    let x = document.getElementsByClassName('noteCard');
+    for(let i=0 ;i<x.length ;i++){
+
+      if(notesObj[i].id == id){
+        document.getElementsByClassName('card-deck')[i].style.backgroundColor = "#DBE2EF";
+        notesObj[i].isImportant = false;
+        localStorage.setItem("notes" , JSON.stringify(notesObj));
+        return;
+      }
+    }
+  }
 }
 
 showNotes();
