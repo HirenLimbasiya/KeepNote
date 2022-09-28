@@ -160,8 +160,6 @@ function important(id){
         return;
       }
     }
-    // console.log(ind)
-    // notesObj[ind].isImportant = true;
   }else{
     let notes = localStorage.getItem("notes");
     notesObj = JSON.parse(notes);

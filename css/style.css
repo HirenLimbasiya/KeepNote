@@ -92,6 +92,9 @@ img{
 }
 .notes{
   padding: 0 60px;
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
 }
 .catd-title{
   font-size: 1.3rem;
@@ -208,7 +211,7 @@ hr{
   width: 20px;
   transform: translateY(-50%);
   background-color: #11D9FF;
-  border-radius: 25%;
+  border-radius: 50%;
 }
 .mycheckbox:hover input ~ .checkmark {
   background-color: #00D7D3;
@@ -238,6 +241,9 @@ hr{
   }
   .card-title{
     font-size: 1.6rem;
+  }
+  .notes{
+    justify-content: space-around;
   }
   .textarea {
     width: 50%;
@@ -274,9 +280,6 @@ hr{
     .notes-section{
       font-size: 1.5rem;
       padding: 0 35px;
-    }
-    .noteCard{
-      min-width: 120px;
     }
     .search{
       padding: 10px 35px;
